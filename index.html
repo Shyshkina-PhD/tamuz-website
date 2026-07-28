@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamuz — Digital Census Project</title>
+<style>
+  :root{
+    --bg:#f7f6f2;
+    --text:#151515;
+    --muted:#6c6c68;
+    --line:#d9d8d2;
+    --accent:#9b3f2d;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.55;
+  }
+
+  a{color:inherit}
+  .container{width:min(1080px,calc(100% - 40px));margin:0 auto}
+
+  header{border-bottom:1px solid var(--line)}
+  .nav{
+    min-height:72px;display:flex;align-items:center;
+    justify-content:space-between;gap:24px;
+  }
+  .logo{
+    font-size:18px;font-weight:700;letter-spacing:.16em;
+    text-decoration:none;
+  }
+  .nav-links{display:flex;gap:28px;font-size:14px}
+  .nav-links a{text-decoration:none}
+
+  .hero{padding:120px 0 110px;max-width:940px}
+  .kicker{
+    margin:0 0 24px;color:var(--accent);font-size:12px;
+    font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  }
+
+  h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.035em}
+  h1{max-width:920px;font-size:clamp(52px,8vw,104px);line-height:.98}
+  h2{font-size:clamp(36px,5vw,64px);line-height:1.05;max-width:800px}
+
+  .hero-text{
+    max-width:730px;margin:34px 0 0;
+    font-size:20px;color:var(--muted);
+  }
+  .hero-link{
+    display:inline-block;margin-top:36px;padding-bottom:4px;
+    border-bottom:1px solid var(--text);text-decoration:none;
+    font-size:15px;font-weight:700;
+  }
+
+  section{padding:90px 0;border-top:1px solid var(--line)}
+  .split{display:grid;grid-template-columns:280px 1fr;gap:70px}
+  .section-label{color:var(--muted);font-size:13px}
+  .section-copy{max-width:740px}
+  .section-copy p{margin:0 0 22px;font-size:18px;color:#3e3e3a}
+
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:34px;margin-top:52px;
+  }
+  .item{border-top:1px solid var(--text);padding-top:18px}
+  .item span{display:block;margin-bottom:34px;color:var(--muted);font-size:12px}
+  .item h3{margin-bottom:12px;font-size:22px}
+  .item p{margin:0;color:var(--muted);font-size:15px}
+
+  .method-list,.research-list{
+    margin:45px 0 0;padding:0;list-style:none;
+    border-top:1px solid var(--line);
+  }
+  .method-list li,.research-list li{
+    display:grid;grid-template-columns:70px 1fr;
+    gap:20px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .method-list strong,.research-list strong{font-size:14px}
+  .method-list div,.research-list div{color:var(--muted)}
+  .research-list em{
+    display:block;margin-bottom:4px;color:var(--text);
+    font-style:normal;font-weight:700;
+  }
+
+  .metric{
+    display:grid;grid-template-columns:190px 1fr;gap:30px;
+    padding:28px 0;border-top:1px solid var(--line);
+  }
+  .metric:last-child{border-bottom:1px solid var(--line)}
+  .metric-number{
+    font-size:44px;line-height:1;color:var(--accent);
+    letter-spacing:-.05em;
+  }
+  .metric-copy{color:var(--muted);max-width:600px}
+
+  .contact{padding-bottom:120px}
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:80px;margin-top:55px;
+  }
+  form{display:grid;gap:22px}
+  label{
+    display:block;margin-bottom:7px;color:var(--muted);
+    font-size:12px;
+  }
+  input,textarea,select{
+    width:100%;border:0;border-bottom:1px solid var(--text);
+    border-radius:0;background:transparent;padding:10px 0 12px;
+    color:var(--text);font:inherit;outline:none;
+  }
+  textarea{min-height:110px;resize:vertical}
+  button{
+    width:max-content;border:0;border-bottom:1px solid var(--text);
+    background:transparent;padding:0 0 5px;color:var(--text);
+    font:inherit;font-weight:700;cursor:pointer;
+  }
+  .contact-note{max-width:420px;color:var(--muted);font-size:17px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0}
+  .footer{
+    display:flex;justify-content:space-between;gap:20px;
+    color:var(--muted);font-size:12px;
+  }
+
+  @media(max-width:760px){
+    .nav-links{display:none}
+    .hero{padding:90px 0 80px}
+    section{padding:70px 0}
+    .split,.contact-grid{grid-template-columns:1fr;gap:30px}
+    .grid{grid-template-columns:1fr;gap:26px}
+    .metric{grid-template-columns:1fr;gap:12px}
+    .section-label{margin-bottom:10px}
+    .footer{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#top">TAMUZ</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#model">Model</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="container hero">
+    <p class="kicker">Digital history project</p>
+    <h1>Beyond the published census.</h1>
+    <p class="hero-text">
+      Tamuz uses handwritten text recognition and computational methods to return
+      to the original household schedules of the 1897 Census of the Russian Empire.
+      This makes it possible to reconsider published census data and analyse
+      information that disappeared from the official statistical tables.
+    </p>
+    <a class="hero-link" href="#about">Learn about the project</a>
+  </div>
+
+  <section id="about">
+    <div class="container split">
+      <div class="section-label">01 — About</div>
+      <div>
+        <h2>Returning from aggregated tables to individual records.</h2>
+        <div class="section-copy" style="margin-top:38px">
+          <p>
+            The published volumes of the 1897 census remain an essential source for
+            historical research. Yet publication transformed millions of individual
+            records into aggregated categories and statistical tables.
+          </p>
+          <p>
+            Tamuz works with the surviving handwritten census sheets themselves.
+            By recognising, correcting, and structuring these records, we can test
+            published figures, reconstruct how categories were produced, and study
+            combinations of variables that were never included in the printed census.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="item">
+            <span>01</span>
+            <h3>Recover</h3>
+            <p>Return to household-level records rather than relying only on published aggregates.</p>
+          </article>
+          <article class="item">
+            <span>02</span>
+            <h3>Connect</h3>
+            <p>Analyse age, occupation, birthplace, language, religion, kinship, and residence together.</p>
+          </article>
+          <article class="item">
+            <span>03</span>
+            <h3>Reconsider</h3>
+            <p>Compare original records with published statistics and question established interpretations.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="model">
+    <div class="container split">
+      <div class="section-label">02 — The model</div>
+      <div>
+        <h2>Training handwriting recognition for historical census forms.</h2>
+        <div class="section-copy" style="margin-top:38px">
+          <p>
+            The project trained and evaluated a handwritten text recognition model
+            for Russian-language census schedules in Transkribus. The workflow combines
+            model training with manual correction, layout-aware transcription, and
+            Python-based data processing.
+          </p>
+        </div>
+
+        <div style="margin-top:44px">
+          <div class="metric">
+            <div class="metric-number">32.92%</div>
+            <div class="metric-copy">Character error rate before specialised model training.</div>
+          </div>
+          <div class="metric">
+            <div class="metric-number">9.75%</div>
+            <div class="metric-copy">Character error rate after training the project-specific model.</div>
+          </div>
+        </div>
+
+        <ul class="method-list">
+          <li><strong>01</strong><div>Select and prepare representative census pages.</div></li>
+          <li><strong>02</strong><div>Create corrected ground-truth transcriptions.</div></li>
+          <li><strong>03</strong><div>Train and evaluate a specialised HTR model in Transkribus.</div></li>
+          <li><strong>04</strong><div>Transform recognised text into structured records with Python.</div></li>
+          <li><strong>05</strong><div>Validate the resulting data against the original documents.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="container split">
+      <div class="section-label">03 — Research</div>
+      <div>
+        <h2>Questions already explored with the data.</h2>
+        <ul class="research-list">
+          <li>
+            <strong>01</strong>
+            <div>
+              <em>Migration to Demiivka, a rapidly changing Kyiv suburb</em>
+              Place of birth, mobility, gendered migration, residence, and the social
+              composition of an industrialising urban periphery. Presented at the
+              Computational Humanities Research Conference in Luxembourg.
+            </div>
+          </li>
+          <li>
+            <strong>02</strong>
+            <div>
+              <em>Household and family structures</em>
+              Household size, generational composition, co-residence, marital status,
+              female-headed households, occupational combinations, and relationships
+              between household members.
+            </div>
+          </li>
+          <li>
+            <strong>03</strong>
+            <div>
+              <em>Jewish households as one focused case study</em>
+              A conference-specific analysis of migration and household structures,
+              produced by filtering the wider dataset by religion rather than defining
+              the project as a whole.
+            </div>
+          </li>
+          <li>
+            <strong>04</strong>
+            <div>
+              <em>Published statistics and original schedules</em>
+              Comparison of printed categories with individual-level records, including
+              parameters and combinations of variables unavailable in the published census.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container split">
+      <div class="section-label">04 — Why it matters</div>
+      <div>
+        <h2>The original forms allow different questions to be asked.</h2>
+        <div class="section-copy" style="margin-top:38px">
+          <p>
+            Published census tables answer questions defined by the statistical
+            authorities of the late Russian Empire. The household schedules allow
+            researchers to formulate new questions and combine variables at the level
+            of people, families, and places.
+          </p>
+          <p>
+            Tamuz therefore treats digitisation not simply as access work, but as a
+            method of historical reinterpretation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container split">
+      <div class="section-label">05 — Contact</div>
+      <div>
+        <h2>Get in touch.</h2>
+        <div class="contact-grid">
+          <p class="contact-note">
+            Contact us about research collaboration, census collections, handwritten
+            text recognition, data methods, presentations, or supporting the project.
+          </p>
+
+          <form onsubmit="event.preventDefault(); alert('Thank you. This prototype form can be connected to your email or form service.');">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+            <div>
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option>Research collaboration</option>
+                <option>Census archive or collection</option>
+                <option>HTR or data methods</option>
+                <option>Conference or event</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <div>TAMUZ</div>
+    <div>Digital Census Project · Founded 2024</div>
+  </div>
+</footer>
+
+</body>
+</html>
